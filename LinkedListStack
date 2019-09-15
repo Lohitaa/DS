@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+int push();
+int pop();
+int display();
+int peek();
+struct node
+{
+    int data;
+    struct node *next;
+};    
+struct node *top=NULL;
+
+int main()
+{
+    int ch;
+    printf("1.Push 2.Pop 3.Dispaly 4.Peak");
+    while(ch!=5)
+    {
+        printf("choice");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+           case 1:
+           push(); 
+           break;
+           case 2:
+           pop();
+           break;
+           case 3:
+           display();
+           break;
+           case 4:
+           peak();
+           break;
+           case 5:
+           break;
+    
+        }
+    
+    }    
+}
+int push()
+{
+    int x;
+    printf("enter element");
+    scanf("%d",&x);
+     struct node *temp;
+     temp=(struct node*)malloc(sizeof(struct node)); 
+     temp->data=x;
+     temp->next=top;
+     top=temp;
+     printf("%d inserted",x);
+}
+int pop()
+{
+    struct node *current;
+    if(top==NULL)
+    {
+        printf("stack underflow");
+    }
+    current=top;
+    top=top->next;
+    free(current);
+    printf("popped",current->data);
+}
+int peak()
+{
+    printf("%d",top->data);
+}
+int display()
+{
+    struct node*temp;
+    temp=top;
+    while(temp!=NULL)
+    {
+        printf("%d",temp->data);
+        temp=temp->next;
+    }
+}
